@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Closed Loop Screenplay</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <!-- 解析库 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+  <style>
+    body {
+      background-color: #09090b;
+      color: #e5e5e5;
+    }
+    .screenplay-font {
+      font-family: 'Courier Prime', Courier, monospace;
+    }
+    .page-shadow {
+      box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.8);
+    }
+    /* 模拟电影胶片加载动画 */
+    @keyframes film-flicker {
+      0% { opacity: 0.95; }
+      20% { opacity: 1; }
+      40% { opacity: 0.9; }
+      60% { opacity: 1; }
+      80% { opacity: 0.95; }
+      100% { opacity: 1; }
+    }
+    .loading-flicker {
+      animation: film-flicker 0.2s infinite;
+    }
+
+    /* 打印专用样式 (PDF 导出核心) */
+    @media print {
+      body { background: white !important; color: black !important; }
+      header, footer, .no-print, .action-hints { display: none !important; }
+      main { padding-top: 0 !important; }
+      .page-shadow { 
+        box-shadow: none !important; 
+        border: none !important; 
+        padding: 0 !important;
+        margin: 0 !important;
+        background: white !important;
+      }
+      .screenplay-container { 
+        width: 100% !important; 
+        max-width: none !important;
+      }
+      /* 强制剧本字体为黑色并调整页边距 */
+      .screenplay-font { color: black !important; }
+      @page {
+        margin: 1in;
+      }
+    }
+
+    /* 编辑器焦点样式 */
+    [contenteditable]:focus {
+      outline: none;
+      background: rgba(59, 130, 246, 0.1);
+      border-radius: 4px;
+    }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai"
+  }
+}
+</script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>
